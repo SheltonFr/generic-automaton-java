@@ -2,7 +2,7 @@ package com.sheltonfrancisco.automaton;
 
 import java.util.*;
 
-public class Automaton<State, Symbol> {
+public class Automaton<State, Symbol> implements IAutomaton{
 
     private Set<State> states;
     private Set<Symbol> alphabet;
@@ -17,10 +17,9 @@ public class Automaton<State, Symbol> {
         this.transitions = new HashMap<>();
     }
 
-    public void setStates(State... states) {
-        Arrays.stream(states).toList().forEach(state -> {
-            this.states.add(state);
-        });
+    @SafeVarargs
+    public final void setStates(State... states) {
+        this.states.addAll(Arrays.stream(states).toList());
     }
 
     public void setInitialState(State initialState) {
@@ -28,14 +27,13 @@ public class Automaton<State, Symbol> {
         this.states.add(initialState);
     }
 
-    public void setAlphabet(Symbol... symbols) {
-        Arrays.stream(symbols).toList()
-                .forEach(symbol -> {
-                    this.alphabet.add(symbol);
-                });
+    @SafeVarargs
+    public final void setAlphabet(Symbol... symbols) {
+        this.alphabet.addAll(Arrays.stream(symbols).toList());
     }
 
-    public void setAcceptingStates(State... states) {
+    @SafeVarargs
+    public final void setAcceptingStates(State... states) {
         Arrays.stream(states).toList().forEach(state -> {
             if (!this.states.contains(state)) throw new RuntimeException("This state does not exist");
             else this.acceptingState.add(state);
@@ -106,7 +104,7 @@ public class Automaton<State, Symbol> {
 
          if (acceptingState.contains(currentState)) System.out.println("Valid Entry"); else System.out.println("Invalid Entry");
     }
-    public void showParameters() {
+    public void details() {
         System.out.println("States: ");
         this.states.forEach(System.out::println);
 
