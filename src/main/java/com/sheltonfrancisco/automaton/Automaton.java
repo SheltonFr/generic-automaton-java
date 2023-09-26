@@ -17,7 +17,7 @@ public class Automaton<State, Symbol> {
         this.transitions = new HashMap<>();
     }
 
-    public void setSates(State... states) {
+    public void setStates(State... states) {
         Arrays.stream(states).toList().forEach(state -> {
             this.states.add(state);
         });

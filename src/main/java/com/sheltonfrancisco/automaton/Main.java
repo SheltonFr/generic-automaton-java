@@ -1,7 +1,5 @@
 package com.sheltonfrancisco.automaton;
 
-import java.util.HashMap;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -10,7 +8,7 @@ public class Main {
 
 
         automaton.setInitialState("q0");
-        automaton.setSates("q1", "q2", "q3");
+        automaton.setStates("q1", "q2", "q3");
         automaton.setAcceptingStates("q0");
 
         automaton.setAlphabet('0', '1');
