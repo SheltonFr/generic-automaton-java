@@ -2,7 +2,7 @@ package com.sheltonfrancisco.automaton;
 
 import java.util.*;
 
-public class Automaton<State, Symbol> implements IAutomaton{
+public class Automaton<State, Symbol> {
 
     private Set<State> states;
     private Set<Symbol> alphabet;
@@ -44,7 +44,7 @@ public class Automaton<State, Symbol> implements IAutomaton{
         if (!this.states.contains(state) || !this.states.contains(destination) || !this.alphabet.contains(symbol))
             throw new RuntimeException("Invalid entry");
 
-        if(!this.transitions.containsKey(state)) {
+        if (!this.transitions.containsKey(state)) {
             this.transitions.put(state, new HashMap<>() {{
                 put(symbol, destination);
             }});
@@ -56,7 +56,7 @@ public class Automaton<State, Symbol> implements IAutomaton{
     }
 
     @SafeVarargs
-    public  final boolean exec(Symbol... input) {
+    public final boolean exec(Symbol... input) {
 
         if (initialState == null || acceptingState.isEmpty())
             throw new RuntimeException("You must provide an initial state, and, at least one accepting state");
@@ -102,8 +102,10 @@ public class Automaton<State, Symbol> implements IAutomaton{
         }
 
 
-         if (acceptingState.contains(currentState)) System.out.println("Valid Entry"); else System.out.println("Invalid Entry");
+        if (acceptingState.contains(currentState)) System.out.println("Valid Entry");
+        else System.out.println("Invalid Entry");
     }
+
     public void details() {
         System.out.println("States: ");
         this.states.forEach(System.out::println);
